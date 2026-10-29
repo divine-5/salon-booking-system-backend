@@ -1,9 +1,11 @@
 package rw.auca.salonbookingsystem.service;
 
 import rw.auca.salonbookingsystem.model.Booking;
+import rw.auca.salonbookingsystem.model.BookingStatus;
 import rw.auca.salonbookingsystem.repository.BookingRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -47,5 +49,13 @@ public class BookingService {
 
         bookingRepository.deleteById(id);
         return "Booking deleted successfully";
+    }
+
+    public List<Booking> getByStatus(BookingStatus status) {
+        return bookingRepository.findByStatusOrderByBookingDateAsc(status);
+    }
+
+    public List<Booking> getBetweenDates(LocalDate start, LocalDate end) {
+        return bookingRepository.findByBookingDateBetweenOrderByBookingDateAsc(start, end);
     }
 }
