@@ -48,4 +48,8 @@ public class SalonServiceService {
         salonServiceRepository.deleteById(id);
         return "Salon service deleted successfully";
     }
+
+    public List<SalonService> getUnusedSalonServices() {
+        return salonServiceRepository.findUnusedSalonServices();
+    }
 }

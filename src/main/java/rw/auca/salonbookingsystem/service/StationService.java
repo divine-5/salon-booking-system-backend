@@ -48,4 +48,8 @@ public class StationService {
         stationRepository.deleteById(id);
         return "Station deleted successfully";
     }
+
+    public List<Station> getFreeStations() {
+        return stationRepository.findFreeStations();
+    }
 }

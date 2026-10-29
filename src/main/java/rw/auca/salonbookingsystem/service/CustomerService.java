@@ -2,6 +2,7 @@ package rw.auca.salonbookingsystem.service;
 
 import rw.auca.salonbookingsystem.model.Customer;
 import rw.auca.salonbookingsystem.repository.CustomerRepository;
+import rw.auca.salonbookingsystem.repository.StylistRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +13,11 @@ import java.util.UUID;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final StylistRepository stylistRepository;
 
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository, StylistRepository stylistRepository) {
         this.customerRepository = customerRepository;
+        this.stylistRepository = stylistRepository;
     }
 
     public String save(Customer customer) {
@@ -51,5 +54,13 @@ public class CustomerService {
 
     public List<Customer> getByLastName(String lastName) {
         return customerRepository.findByLastNameIgnoreCaseOrderByFirstNameAsc(lastName);
+    }
+
+    public List<Customer> getCustomersOfStylist(UUID stylistId) {
+        if (!stylistRepository.existsById(stylistId)) {
+            return null;
+        }
+
+        return customerRepository.findCustomersByStylistId(stylistId);
     }
 }

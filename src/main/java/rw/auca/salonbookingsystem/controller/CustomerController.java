@@ -69,4 +69,16 @@ public class CustomerController {
     public ResponseEntity<List<Customer>> getByLastName(@RequestParam String lastName) {
         return ResponseEntity.ok(customerService.getByLastName(lastName));
     }
+
+    @GetMapping("/of-stylist/{stylistId}")
+    public ResponseEntity<?> getCustomersOfStylist(@PathVariable UUID stylistId) {
+        List<Customer> customers = customerService.getCustomersOfStylist(stylistId);
+
+        if (customers == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("The stylist with that id does not exist");
+        }
+
+        return ResponseEntity.ok(customers);
+    }
 }

@@ -48,4 +48,8 @@ public class StylistService {
         stylistRepository.deleteById(id);
         return "Stylist deleted successfully";
     }
+
+    public List<Stylist> getBySalonServiceName(String name) {
+        return stylistRepository.findBySalonServiceName(name);
+    }
 }

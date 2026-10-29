@@ -14,56 +14,59 @@ import java.util.UUID;
 @RequestMapping("/api/stations")
 public class StationController {
 
-private final StationService stationService;
+    private final StationService stationService;
 
-public StationController(StationService stationService) {
-    this.stationService = stationService;
-}
-
-@PostMapping("/save")
-public ResponseEntity<String> save(@RequestBody Station station) {
-    String message = stationService.save(station);
-    return ResponseEntity.status(HttpStatus.CREATED).body(message);
-}
-
-@GetMapping("/all")
-public ResponseEntity<List<Station>> getAll() {
-    return ResponseEntity.ok(stationService.getAll());
-}
-
-@GetMapping("/{id}")
-public ResponseEntity<?> getById(@PathVariable UUID id) {
-    Optional<Station> station = stationService.getById(id);
-
-    if (station.isPresent()) {
-        return ResponseEntity.ok(station.get());
+    public StationController(StationService stationService) {
+        this.stationService = stationService;
     }
 
-    return ResponseEntity.status(HttpStatus.NOT_FOUND)
-            .body("The station with that id does not exist");
-}
-
-@PutMapping("/update/{id}")
-public ResponseEntity<String> update(@PathVariable UUID id, @RequestBody Station station) {
-    String message = stationService.update(id, station);
-
-    if (message.equals("The station with that id does not exist")) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    @PostMapping("/save")
+    public ResponseEntity<String> save(@RequestBody Station station) {
+        String message = stationService.save(station);
+        return ResponseEntity.status(HttpStatus.CREATED).body(message);
     }
 
-    return ResponseEntity.ok(message);
-}
-
-@DeleteMapping("/delete/{id}")
-public ResponseEntity<String> delete(@PathVariable UUID id) {
-    String message = stationService.delete(id);
-
-    if (message.equals("The station with that id does not exist")) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    @GetMapping("/all")
+    public ResponseEntity<List<Station>> getAll() {
+        return ResponseEntity.ok(stationService.getAll());
     }
 
-    return ResponseEntity.ok(message);
-}
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable UUID id) {
+        Optional<Station> station = stationService.getById(id);
 
+        if (station.isPresent()) {
+            return ResponseEntity.ok(station.get());
+        }
 
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("The station with that id does not exist");
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> update(@PathVariable UUID id, @RequestBody Station station) {
+        String message = stationService.update(id, station);
+
+        if (message.equals("The station with that id does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+
+        return ResponseEntity.ok(message);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> delete(@PathVariable UUID id) {
+        String message = stationService.delete(id);
+
+        if (message.equals("The station with that id does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+
+        return ResponseEntity.ok(message);
+    }
+
+    @GetMapping("/free")
+    public ResponseEntity<List<Station>> getFreeStations() {
+        return ResponseEntity.ok(stationService.getFreeStations());
+    }
 }
