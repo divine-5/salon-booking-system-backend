@@ -6,6 +6,8 @@ import rw.auca.salonbookingsystem.repository.BookingRepository;
 import rw.auca.salonbookingsystem.repository.ServiceRecordRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -130,5 +132,8 @@ public String cancelBookingsForStylistOnDate(UUID stylistId, LocalDate date) {
     return count + " bookings cancelled";
 }
 
+public Page<Booking> getBookingsPage(Pageable pageable) {
+    return bookingRepository.findAll(pageable);
+}
 
 }

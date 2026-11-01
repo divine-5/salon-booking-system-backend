@@ -30,5 +30,8 @@ int cancelBookingsForStylistOnDate(@Param("stylistId") UUID stylistId, @Param("d
 
 List<Booking> findByStylistIdAndBookingDateAndStatusNotIn(UUID stylistId, LocalDate bookingDate, List<BookingStatus> statuses);
 
+long countByBookingDate(LocalDate bookingDate);
+
+long countByStatus(BookingStatus status);
 
 }

@@ -6,12 +6,15 @@ import rw.auca.salonbookingsystem.service.BookingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/bookings")
@@ -126,6 +129,25 @@ public class BookingController {
         @RequestParam LocalDate date) {
             String result = bookingService.cancelBookingsForStylistOnDate(stylistId, date);
             return ResponseEntity.ok(result);
+        }
+
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<Booking>> getBookingsPage(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "5") int size,
+        @RequestParam(defaultValue = "bookingDate,desc") String sort) {
+
+            String[] sortDetails = sort.split(",");
+
+            String sortField = sortDetails[0];
+            Sort.Direction direction = sortDetails.length > 1
+            ? Sort.Direction.fromString(sortDetails[1])
+            : Sort.Direction.ASC;
+
+            Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortField));
+
+            return ResponseEntity.ok(bookingService.getBookingsPage(pageable));
         }
 }
 

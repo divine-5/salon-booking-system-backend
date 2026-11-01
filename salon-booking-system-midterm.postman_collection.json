@@ -1,0 +1,969 @@
+{
+  "info": {
+    "_postman_id": "1fffc35d-716f-4f04-a8cb-425b1ab548fb",
+    "name": "Salon_Midterm",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56250509",
+    "_collection_link": "https://go.postman.co/collection/56250509-1fffc35d-716f-4f04-a8cb-425b1ab548fb?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Part A Crud Operations",
+      "item": [
+        {
+          "name": "A1 - Get all records",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/salon-services/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "salon-services",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "A2 - Save Record",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Hair Coloring\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/salon-services/save",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "salon-services",
+                "save"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "A3 - Get Record by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/stylists/989a23a6-79ba-4360-b07f-93f86caef03b",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "stylists",
+                "989a23a6-79ba-4360-b07f-93f86caef03b"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "A4 - Update record",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Hair Coloring and Styling\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/salon-services/update/48e776b2-ec35-4fa6-874c-8ad607d845bd",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "salon-services",
+                "update",
+                "48e776b2-ec35-4fa6-874c-8ad607d845bd"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "A5 - Delete record",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/salon-services/delete/48e776b2-ec35-4fa6-874c-8ad607d845bd",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "salon-services",
+                "delete",
+                "48e776b2-ec35-4fa6-874c-8ad607d845bd"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "A6 - Get all Stations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/stations/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "stations",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "A7 - Get all Stylists",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/stylists/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "stylists",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "A8 - Get all Customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstName\": \"Grace\",\r\n  \"lastName\": \"Mukamana\",\r\n  \"phone\": \"0788123460\",\r\n  \"email\": \"grace@example.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/customers/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "customers",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "A9 - Get all Bookings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bookingDate\": \"2026-11-15\",\r\n  \"status\": \"SERVED\",\r\n  \"timeSlot\": \"15:00\",\r\n  \"customer\": {\r\n    \"id\": \"1fecd17c-0d82-4cc8-8e2b-30b16f69cefa\"\r\n  },\r\n  \"stylist\": {\r\n    \"id\": \"1b62377c-9aeb-4b49-9d21-5786fbdecb4e\"\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "A10 - Get Booking by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "b384e2c9-1604-488f-8513-5cb5571555e5",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/b384e2c9-1604-488f-8513-5cb5571555e5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "b384e2c9-1604-488f-8513-5cb5571555e5"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Part B Derived Queries",
+      "item": [
+        {
+          "name": "B1 - Find Customers by Last name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/customers/by-last-name?lastName=uWaSe",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "customers",
+                "by-last-name"
+              ],
+              "query": [
+                {
+                  "key": "lastName",
+                  "value": "uWaSe"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "B2 - Find Bookings By Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/by-status?status=REQUESTED",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "by-status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "REQUESTED"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "B3 - Find Bookings between dates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/between?start=2026-10-01&end=2026-10-31",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "between"
+              ],
+              "query": [
+                {
+                  "key": "start",
+                  "value": "2026-10-01"
+                },
+                {
+                  "key": "end",
+                  "value": "2026-10-31"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Part C JPQL with Joins",
+      "item": [
+        {
+          "name": "C1 - Stylists By Salon Service",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/stylists/by-salon-service?name=BRAIDING",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "stylists",
+                "by-salon-service"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "BRAIDING"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "C2 - Free Stations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/stations/free",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "stations",
+                "free"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "C3 - Unused Salon Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/salon-services/unused",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "salon-services",
+                "unused"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "C4 - Customers Of Stylist",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/customers/of-stylist/989a23a6-79ba-4360-b07f-93f86caef03b",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "customers",
+                "of-stylist",
+                "989a23a6-79ba-4360-b07f-93f86caef03b"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Part D Business Rules",
+      "item": [
+        {
+          "name": "D1 - Safe Booking Save",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"bookingDate\": \"2026-11-05\",\r\n    \"status\": \"SERVED\",\r\n    \"timeSlot\": \"09:00\",\r\n    \"customer\": {\r\n        \"id\": \"b3d0c687-4002-4ec7-9e96-7e4c607fc0fb\"\r\n    },\r\n    \"stylist\": {\r\n        \"id\": \"989a23a6-79ba-4360-b07f-93f86caef03b\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/save",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "save"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D1 - Reject Past Booking",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"bookingDate\": \"2026-10-01\",\r\n    \"timeSlot\": \"10:00\",\r\n    \"customer\": {\r\n        \"id\": \"b3d0c687-4002-4ec7-9e96-7e4c607fc0fb\"\r\n    },\r\n    \"stylist\": {\r\n        \"id\": \"989a23a6-79ba-4360-b07f-93f86caef03b\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/save",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "save"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D1 - Reject Duplicate Booking",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"bookingDate\": \"2026-11-05\",\r\n    \"timeSlot\": \"11:00\",\r\n    \"customer\": {\r\n        \"id\": \"b3d0c687-4002-4ec7-9e96-7e4c607fc0fb\"\r\n    },\r\n    \"stylist\": {\r\n        \"id\": \"989a23a6-79ba-4360-b07f-93f86caef03b\"\r\n    }\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/save",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "save"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D2 - Accept REQUESTED to ACCEPTED",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/8860445f-d0e4-4aab-afa6-406bb7e96fd4/status?status=ACCEPTED",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "8860445f-d0e4-4aab-afa6-406bb7e96fd4",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "ACCEPTED"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D2 - Reject Served to Requested",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/76698755-2e36-4564-9876-d8c736a907a7/status?status=REQUESTED",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "76698755-2e36-4564-9876-d8c736a907a7",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "REQUESTED"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D2 - Reject Missing Booking",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/00000000-0000-0000-0000-000000000000/status?status=ACCEPTED",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "00000000-0000-0000-0000-000000000000",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "ACCEPTED"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D2 - Accept to Cancelled",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/3e58f69c-23dd-4a4f-813f-2338a2ffe413/status?status=CANCELLED",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "3e58f69c-23dd-4a4f-813f-2338a2ffe413",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "CANCELLED"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D2 - Requested to Cancelled",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/9cbbf386-fac5-42f9-b481-118663446843/status?status=CANCELLED",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "9cbbf386-fac5-42f9-b481-118663446843",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "CANCELLED"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D3 - Add Service to Stylist",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/stylists/442fbed9-b033-43b6-b18f-540c853c5ea4/salon-services/c0db46c1-37f4-4da5-a8f8-82efa94bd80f",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "stylists",
+                "442fbed9-b033-43b6-b18f-540c853c5ea4",
+                "salon-services",
+                "c0db46c1-37f4-4da5-a8f8-82efa94bd80f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D4 - Move Stylist to Station",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/stylists/989a23a6-79ba-4360-b07f-93f86caef03b/station?stationNumber=4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "stylists",
+                "989a23a6-79ba-4360-b07f-93f86caef03b",
+                "station"
+              ],
+              "query": [
+                {
+                  "key": "stationNumber",
+                  "value": "4"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "D4 - Verify Old Station Is Free",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/stations/free",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "stations",
+                "free"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Part E ServiceRecord",
+      "item": [
+        {
+          "name": "E1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"booking\": {\r\n    \"id\": \"76698755-2e36-4564-9876-d8c736a907a7\"\r\n  },\r\n  \"salonService\": {\r\n    \"id\": \"c0db46c1-37f4-4da5-a8f8-82efa94bd80f\"\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8082/api/service-records/save",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "service-records",
+                "save"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/service-records/by-customer-phone?phone=0788123456",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "service-records",
+                "by-customer-phone"
+              ],
+              "query": [
+                {
+                  "key": "phone",
+                  "value": "0788123456"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "E3",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/service-records/delete/661555df-2b59-4d13-9305-2cfc1530a766",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "service-records",
+                "delete",
+                "661555df-2b59-4d13-9305-2cfc1530a766"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Part F reports and bulk updates",
+      "item": [
+        {
+          "name": "F1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/stats/by-status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "stats",
+                "by-status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "F2",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/cancel-day?stylistId=989a23a6-79ba-4360-b07f-93f86caef03b&date=2026-10-20",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "cancel-day"
+              ],
+              "query": [
+                {
+                  "key": "stylistId",
+                  "value": "989a23a6-79ba-4360-b07f-93f86caef03b"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-10-20"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Bonus",
+      "item": [
+        {
+          "name": "Bonus1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/dashboard/summary",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "dashboard",
+                "summary"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Bonus2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8082/api/bookings/page?page=0&size=5&sort=bookingDate,desc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8082",
+              "path": [
+                "api",
+                "bookings",
+                "page"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "bookingDate,desc"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
