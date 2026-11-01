@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/bookings")
@@ -113,5 +114,18 @@ public class BookingController {
 
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping("/stats/by-status")
+    public ResponseEntity<List<Object[]>> getBookingStatsByStatus() {
+        return ResponseEntity.ok(bookingService.getBookingStatsByStatus());
+    }
+
+    @PatchMapping("/cancel-day")
+    public ResponseEntity<String> cancelBookingsForStylistOnDate(
+        @RequestParam UUID stylistId,
+        @RequestParam LocalDate date) {
+            String result = bookingService.cancelBookingsForStylistOnDate(stylistId, date);
+            return ResponseEntity.ok(result);
+        }
 }
 
