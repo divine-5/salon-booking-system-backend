@@ -3,6 +3,7 @@ package rw.auca.salonbookingsystem.service;
 import rw.auca.salonbookingsystem.model.Booking;
 import rw.auca.salonbookingsystem.model.BookingStatus;
 import rw.auca.salonbookingsystem.repository.BookingRepository;
+import rw.auca.salonbookingsystem.repository.ServiceRecordRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,10 +15,12 @@ import java.util.UUID;
 public class BookingService {
 
     private final BookingRepository bookingRepository;
+    private final ServiceRecordRepository serviceRecordRepository;
 
-    public BookingService(BookingRepository bookingRepository) {
-        this.bookingRepository = bookingRepository;
-    }
+   public BookingService(BookingRepository bookingRepository, ServiceRecordRepository serviceRecordRepository) {
+    this.bookingRepository = bookingRepository;
+    this.serviceRecordRepository = serviceRecordRepository;
+   }
 
     public String save(Booking booking) {
 
@@ -68,6 +71,10 @@ public class BookingService {
 
         if (!bookingRepository.existsById(id)) {
             return "The booking with that id does not exist";
+        }
+
+        if (serviceRecordRepository.existsByBookingId(id)) {
+            return "Cannot delete a booking that has service records";
         }
 
         bookingRepository.deleteById(id);

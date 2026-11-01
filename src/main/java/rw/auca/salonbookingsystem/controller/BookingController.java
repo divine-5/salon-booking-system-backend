@@ -77,6 +77,10 @@ public class BookingController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
         }
 
+        if (result.equals("Cannot delete a booking that has service records")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(result);
+        }
+
         return ResponseEntity.ok(result);
     }
 
