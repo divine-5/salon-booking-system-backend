@@ -24,8 +24,18 @@ public class BookingController {
 
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody Booking booking) {
-        String message = bookingService.save(booking);
-        return ResponseEntity.status(HttpStatus.CREATED).body(message);
+
+        String result = bookingService.save(booking);
+
+        if (result.equals("Booking date cannot be in the past")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
+        }
+
+        if (result.equals("Stylist is already booked on that date")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(result);
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
     @GetMapping("/all")
@@ -35,36 +45,39 @@ public class BookingController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable UUID id) {
+
         Optional<Booking> booking = bookingService.getById(id);
 
-        if (booking.isPresent()) {
-            return ResponseEntity.ok(booking.get());
+        if (booking.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("The booking with that id does not exist");
         }
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body("The booking with that id does not exist");
+        return ResponseEntity.ok(booking.get());
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable UUID id, @RequestBody Booking booking) {
-        String message = bookingService.update(id, booking);
 
-        if (message.equals("The booking with that id does not exist")) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        String result = bookingService.update(id, booking);
+
+        if (result.equals("The booking with that id does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
         }
 
-        return ResponseEntity.ok(message);
+        return ResponseEntity.ok(result);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable UUID id) {
-        String message = bookingService.delete(id);
 
-        if (message.equals("The booking with that id does not exist")) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        String result = bookingService.delete(id);
+
+        if (result.equals("The booking with that id does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
         }
 
-        return ResponseEntity.ok(message);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/by-status")
@@ -73,13 +86,28 @@ public class BookingController {
     }
 
     @GetMapping("/between")
-    public ResponseEntity<List<Booking>> getBetweenDates(
-            @RequestParam String start,
-            @RequestParam String end) {
+    public ResponseEntity<List<Booking>> getBetween(
+            @RequestParam LocalDate start,
+            @RequestParam LocalDate end) {
+        return ResponseEntity.ok(bookingService.getBetween(start, end));
+    }
 
-        LocalDate startDate = LocalDate.parse(start);
-        LocalDate endDate = LocalDate.parse(end);
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<String> updateStatus(
+            @PathVariable UUID id,
+            @RequestParam BookingStatus status) {
 
-        return ResponseEntity.ok(bookingService.getBetweenDates(startDate, endDate));
+        String result = bookingService.updateStatus(id, status);
+
+        if (result.equals("The booking with that id does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        }
+
+        if (result.startsWith("Cannot change status")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
+        }
+
+        return ResponseEntity.ok(result);
     }
 }
+
